@@ -18,9 +18,10 @@
 
     <dependencies>
 
+
         <dependency>
             <groupId>com.alke</groupId>
-            <artifactId>alke-common</artifactId>
+            <artifactId>service-base</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
