@@ -1,11 +1,14 @@
 package com.alke.hfs.core.controller.admin;
 
 
+import com.alke.common.exception.Assert;
 import com.alke.common.result.R;
+import com.alke.common.result.ResponseEnum;
 import com.alke.hfs.core.pojo.entity.IntegralGrade;
 import com.alke.hfs.core.service.IntegralGradeService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -23,6 +26,7 @@ import java.util.List;
 @CrossOrigin
 @RestController
 @RequestMapping("/admin/core/integralGrade")
+@Slf4j
 public class AdminIntegralGradeController {
 
     @Resource
@@ -31,6 +35,11 @@ public class AdminIntegralGradeController {
     @ApiOperation("积分等级列表")
     @GetMapping("/list")
     public R listAll() {
+
+        log.info("this info.............");
+        log.warn("this warn.............");
+        log.error("this error.............");
+
         List<IntegralGrade> list = integralGradeService.list();
         return R.ok().data("list", list).message("获取列表成功");
     }
@@ -49,6 +58,9 @@ public class AdminIntegralGradeController {
     @ApiOperation("新增积分等级")
     @PostMapping("/save")
     public R save(@RequestBody IntegralGrade integralGrade){
+
+        Assert.notNull(integralGrade.getBorrowAmount(), ResponseEnum.BORROW_AMOUNT_NULL_ERROR);
+
         boolean result = integralGradeService.save(integralGrade);
         if (result){
             return R.ok().message("保存成功");

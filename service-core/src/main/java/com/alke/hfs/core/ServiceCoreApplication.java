@@ -10,7 +10,7 @@ import org.springframework.context.annotation.ComponentScan;
  * 2021-08-13 14:45
  */
 @SpringBootApplication
-@ComponentScan({"com.alke.hfs"})
+@ComponentScan({"com.alke.hfs", "com.alke.common"})
 public class ServiceCoreApplication {
 
     public static void main(String[] args) {
